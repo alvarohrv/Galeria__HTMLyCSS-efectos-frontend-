@@ -1,0 +1,161 @@
+/**
+las segunas olas son responsi
+*/
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    background-color: rgb(72, 149, 239);
+}
+
+
+/* WAVE 1 - uso de PNG*/
+.divcontwave{
+ position: relative;
+ /* background-color: #b80751; */
+ background: linear-gradient(60deg, rgb(235, 30, 30, 0.9) 0%, rgb(217, 126, 22, 1) 80%);
+ width: 100vw;
+ height: 30vh;
+}
+
+.wave_divcontwave{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 15vh;
+	background-image: url(../img/wave1.png); /*wave sinusoidal 1280x129*/
+	background-size: 640px 100%; /*la mitad del ciclo*/
+	/*cuando la frecuencia espacial es baja (con un background-size de ancho grande, como 1280px), la misma velocidad de animación de desplazamiento hará que las crestas y los valles pasen por un punto fijo de la pantalla a un ritmo mucho más lento, dado que  el periodo es mayor y la amplitud se mantiene, por tanto se ven menos crestas. (nota la longitud de la onda es igual a cualquier frecuencia porque es un png), viendo una porción más extensa de un ciclo de la onda que tarda más en recorrer el ancho de la pantalla.*/
+	/* background-repeat: repeat; */
+	animation: wave 10s linear infinite;
+}
+/*Si se logra una onda, se puede luego desfasar el resto: */
+.efectwavesimp1{
+	animation-delay: -1s; /*tiempo antes de iniciar la animacion*/
+	animation-duration:7s;
+	opacity: 0.3;
+	/* display: none; */
+}
+.efectwavesimp2{
+	animation-delay: -2s;
+	animation-duration:7s;
+	opacity: 0.4;
+		/* display: none; */
+}
+.efectwavesimp3{
+	animation-delay: -3s;
+	animation-duration:9s;
+	opacity: 0.9;
+	/* display: none; */
+}
+
+@keyframes wave{
+	0%{
+		background-position-x: 0;
+	}
+	100%{
+        background-position-x: 1280px; /*multiplo de  background-size en X*/
+		/*background-position-x: 1400px; /*multiplo de  background-size en X // esta tambien funciono, casi cualquier numero mayor a la imagen*/
+	}
+}
+
+/* ////////////////////////////////////// */
+/* WAVE 2 - USO de SVG*/
+
+.divwave{
+	width: 100%;
+	height: 40vh;
+	overflow: hidden;
+	/* background: red; */
+	/* animation: wave2 10s linear infinite;	 */
+}
+svg {
+	/*que ocupe la pantalla de extre a extremo*/
+	width: 200%; /*garantiza la repeticion fuera del campo visual*/
+	height: 40vh; /*tambien se requiere un tamaño minimo*/
+	position: relative;
+	/* object-fit: cover; */ /*Para asegurar*/
+  }
+
+  use{
+	/* animation-delay: -3s; */
+	/* animation-duration: 2s; */
+	/* animation: waveMove 3s linear infinite; */
+  }
+
+  /*<use> es parte del estándar SVG, útil para reutilizar formas o símbolos definidos dentro del mismo SVG ( modificar su posición, color y animación )//  https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/use */
+
+  use:nth-child(1){
+}
+
+/*Es mas sencillo repetir elementos (solo se requeire un elemento html svg)*/
+use:nth-child(2){
+	animation: waveMove 2s  cubic-bezier(.55,.5,.45,.5) infinite;
+	animation-delay: -1s;
+	animation-duration:5s;
+
+	/* animation: waveMove 2s  cubic-bezier(.55,.5,.45,.5) infinite; */
+}
+use:nth-child(3){
+	animation: waveMove 2s  cubic-bezier(.55,.5,.45,.5) infinite;
+	animation-delay: -2s;
+	animation-duration:6s;
+}
+use:nth-child(4){
+	animation: waveMove 2s  cubic-bezier(.55,.5,.45,.5) infinite;
+	animation-delay: -3s;
+	animation-duration:7s;
+}
+use:nth-child(5){
+	animation: waveMove 2s  cubic-bezier(.55,.5,.45,.5) infinite;
+	animation-delay: -4s;
+	animation-duration:8s;
+}
+use:nth-child(6){
+	animation: waveMove 2s  cubic-bezier(.55,.5,.45,.5) infinite;
+	animation-delay: -5s;
+	animation-duration:9s;
+}
+@keyframes waveMove {
+	0%{
+		transform: translate3d(-50%,0,0)
+	}
+	100%{
+		transform: translate3d(0,0,0)
+	}
+}
+/*Mueve el elemento desde la izquierda fuera de pantalla (–50%) hasta su posición original (0%) NOTA: el SVG tiene un width: 200%*/
+
+/* ///////////// sentido inverso ///////// */
+/* @keyframes waveMove {
+	0%{
+		transform: translate3d(0%,0,0)
+	}
+	100%{
+		transform: translate3d(-50%,0,0)
+	}
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

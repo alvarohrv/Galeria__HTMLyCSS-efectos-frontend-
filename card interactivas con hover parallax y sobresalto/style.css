@@ -1,0 +1,172 @@
+/*outline: solid red 1px;*/
+
+.contCardsCCP{
+	background-color: azure;
+	flex-wrap: wrap;
+	display: flex;
+	justify-content: space-around;
+}
+
+/*---------------*/
+.card__contCardsCCP{
+	margin: 0.5rem;
+	max-width: 200px;
+	min-width: 190px;
+	height: 220px;
+	perspective-origin: 50%;
+	transition: 0.4s all;
+	/* background-color: red; */
+
+} .card__contCardsCCP:hover{
+	/* transform: scale(1.1); */ /*genera un pequeño bug en el texto*/
+	width: 210px;
+	height: 230px;
+	transition: 0.4s all;
+} /*expancion de la card*/
+
+/*---------------*/
+.contBackgroundCard__contSuperior{
+	/* outline: 1px solid black; */
+	border-radius: 20px 20px 0 0; /*este contenedor se coloca para que tenga borse, no aplica scale*/
+	overflow: hidden;
+	transform: translateY(40%); /*importante para lograr el efecto*/
+	transition:  transform 0.4s; /*regreso con un poquito de retraso*/
+	width: 100%;
+	height: 80%;
+}
+
+.backgroundCard__contBackgroundCard{
+	/* outline: 1px solid red; */
+	/*acá ocurre el scale*/
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+	transition:  all 1s; /*regreso con un poquito de retraso*/
+}
+
+.figure__caracterCard{
+	transform: translateY(20%);
+	filter:drop-shadow(5px 5px 4px rgba(0,0,0,0.5)); /*sombrita*/
+	transition: all 0.4s; /*regreso con un poquito de retraso*/
+}
+
+.contInferior_card{
+	border-radius: 0 0 20px 20px;
+	width: 100%;
+	height: 40%;
+	background-color: rgb(117, 140, 245);
+	padding: 0.5rem 0.6rem;
+	/*se requeria para ocultar un pequeño bug del contSup por q se usaba un scale() en la card*/
+	/* position: relative;
+    top: -1px; */
+	/* z-index: 1; */
+	display: flex;
+	flex-direction: column;
+	align-items:center;
+	/* justify-content: space-around; */
+	transition:  all 0.4s; /*regreso con un poquito de retraso*/
+}
+/*---------------*/
+	/*EFECTOS AL HACER HOVER SOBRE LA CARD*/
+.card__contCardsCCP:hover > .contSuperior__card > .contBackgroundCard__contSuperior{
+	/* width: 80%; */
+	transform: translateY(30%);
+	transition:  all 0.6s;
+}/*expancion de la contenedor del background*/
+.card__contCardsCCP:hover > .contSuperior__card > .contBackgroundCard__contSuperior > .backgroundCard__contBackgroundCard{
+	transform:scale(1.9);
+	transition:  all 7s; /*muy desfazado*/
+
+}/*expancion del background*/
+.card__contCardsCCP:hover > .contSuperior__card > .caracterCard__contSuperior > .figure__caracterCard{
+	transform: translateY(5%);
+	filter:none;
+	transition: transform filter 0.6s; /*un poquito desfazado*/
+	overflow: visible;
+}
+.card__contCardsCCP:hover > .contInferior_card{
+	height: 42%;
+	background-color: rgb(117, 140, 245);
+	padding: 1.0rem 0.8rem 0.5rem 0.8rem;
+	transition:  all 0.6s;
+}
+.card__contCardsCCP:hover > .contInferior_card > .buttonCard__contText{
+	transform: translateY(-80%);
+	transition:  all 4s;
+	background-color: red;
+}
+
+/*----------sin efectos, estilos basicos -------*/
+.contSuperior__card{
+	background: rgb(244, 245, 244);
+	 border-radius: 20px 20px 0 0; 
+	position: relative;
+	width: 100%;
+	height: 60%; /*el cont es un poco mas alto para no desbordar sus contenidos y seguir siendo overflow: hidden;*/
+	overflow: hidden;
+	display: flex; 
+	justify-content: center;
+}
+
+.card__contCardsCCP:nth-of-type(1) > .contSuperior__card > .contBackgroundCard__contSuperior > .backgroundCard__contBackgroundCard{
+	background-image: url('./img/fondo1.jpg');
+}
+.card__contCardsCCP:nth-of-type(2) > .contSuperior__card > .contBackgroundCard__contSuperior > .backgroundCard__contBackgroundCard{
+	background-image: url('./img/fondo2.jpg');
+}
+.card__contCardsCCP:nth-of-type(3) > .contSuperior__card > .contBackgroundCard__contSuperior > .backgroundCard__contBackgroundCard{
+	background-image: url('./img/fondo3.jpg');
+}
+
+.caracterCard__contSuperior{
+	/* overflow: visible; */
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.contText__contInferior{
+	width: 100%;
+	height: 100%;
+
+}
+.textCardh1__contText{
+	margin: 0.2rem 0;
+	font-size: 1.6rem;
+	font-weight: 600;
+	color: black;
+	text-align: center;
+}
+.textCardCuerpo__contText{
+	margin: 0.2rem 0;
+	font-size: 1rem;
+	font-weight:400;
+	color: black;
+	text-align: center;
+}
+.buttonCard__contText{
+	width: 8.8rem;
+	height: 2.5rem;
+	background: #19708a;
+	border: none;
+	/* border-bottom: 5px solid #0b556b; */
+	border-radius: 5px;
+	color: white;
+	cursor: pointer;
+	padding: 0.2rem;
+	font-size: 1rem;
+	font-weight:400;
+	transform: translateY(-30%); /*como alternativa a un absolute, para que no quede tan abajo se sube asi*/
+	/* box-shadow: 1px 1px 30px -12px #ee0808; */
+	transition:  all 0.4s; /*regreso con un poquito de retraso*/
+}
+.buttonCard__contText:hover{
+	background: #135c72;
+	box-shadow: 1px 1px 30px -12px black;
+}
+ 
