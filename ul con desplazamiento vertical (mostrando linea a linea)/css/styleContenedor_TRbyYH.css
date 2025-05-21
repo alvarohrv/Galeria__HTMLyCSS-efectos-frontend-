@@ -1,0 +1,11 @@
+
+.contentTRbyYH{
+  width: 100vw;
+  height: 22vh;
+  background-color: #34495e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+}

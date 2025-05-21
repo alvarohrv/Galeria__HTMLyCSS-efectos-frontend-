@@ -1,0 +1,88 @@
+
+.heroImage{
+	height: 100%;
+	display:flex;  /*Sin esto, las lineas de abajo no funciona ¿?*/
+	align-items: flex-end; /*texto queda abajo*/
+	background: url("./img/panda_152k_1920_1080.jpg");
+	/*con una imagen .png traslucida (por photohop) se puede tar tonos mediante la forma:
+		background: url('imagenx.png'), rgb(0,0,0);
+	*/
+	background-size: cover; /*la mejor opcion para las HERO*/
+	background-position: 0px -140px;   /*puede ser 'center;' */
+}
+
+.LayHeroImage{ /*usando layaout flex*/
+	width: 100%;
+	height: 25vh; /*fijamos al 25% de la pantalla*/
+	/*justify-content: center;*/ /*si lo quisieramos centrar en la horizontal*/
+
+	/*padding:2em; /*para que dar un mejor marco a las cajas de textos internas, vasta concualquier valor realmente*/
+	/*padding-bottom: 5%; /*da un respiro, no queda tan abajo ^^! */
+	/*nota: recordar que la imagenHERO es un backgroun y no un <div> hermano del contndTexto*/
+}
+
+/*contenedor de textos*/
+.heroImage__tex{
+color:white; 
+/*text-align: right;*/ /*Si lo quiero arriba a la derecha debo desativar .LayHeroImage y acivar este estilo y margin-right*/
+text-shadow: 2px -2px 0px #2d3436; /*la sombra afecta al h1 y a p por igual*/
+/*margin-right: 40px;*/
+padding-bottom: 16px;
+
+}
+
+.heroImage__tex h1{
+	font-size: 36px;
+	margin: 0px; /*esto puede estar definido en normalize*/
+	padding: 0px;
+}
+
+.heroImage__tex p{
+	font-size: 16px;
+	margin: 0px;
+	padding: 0px;
+}
+
+/*********************************************/
+
+.menuNav{
+	/*	outline: 3px solid red; */
+	padding-left: 1em;
+	background-color: #303f9f;
+	color: white;
+	width: 100%;
+	/*height: 2em;*/
+	height: 2.5em;
+/*	z-index: 10;*/
+		/*ACA ESTA TODO EL TRUCO - EFECTO*/
+	position: sticky;
+	left: 0px;
+	top: 0px;
+
+	display: flex;
+}
+
+.menuNav li{
+	/*border: 1px solid black;*/
+	display: inline-block;
+	margin-left: 0.5em;
+	font-size: 1em;
+	padding: 0.4em;
+}
+
+/*------------*/
+
+.toogleMenu{
+/*	outline: 1px solid red;*/
+/*	transform: translateY(20px);*/ /*MEJOR Usar Flex*/
+	/*display: flex;*/ /*MEJOR trabajar sobre .nav*/
+		/*Importante, porque los pseudo-elementos generan un comportamiento extraño*/
+    /* justify-content: center; */
+    /*align-items: center;*/ /*Importante, porque los pseudo-elementos generan un comportamiento extraño*/
+    background-color: #12218a;
+}
+		/*.
+		VER en style_botonmenu.css
+		.nav {
+		  transform: translateY(7px);
+		}*/

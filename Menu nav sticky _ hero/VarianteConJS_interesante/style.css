@@ -1,0 +1,86 @@
+
+/*NO tomar el diseño de la barra de acá! solo importa el efecto*/
+/*Estilo de la barra de nav, no afecta al efecto stick*/
+
+.menuNav{
+	background-color: #303f92;
+	color: white;
+	width: 100%;
+	height: 4rem;
+	/*ACA ESTA TODO EL TRUCO - EFECTO*/
+/*	position: sticky;
+	left: 0px;
+	top: 0px;*/
+	/*ateriormente requeria uso de JS de una clase .pined o .stick o .active*/
+}
+
+
+.menuNav li{
+	/*border: 1px solid black;*/
+	height: 4rem;
+	display: inline-block;
+	margin-left: 0.5em;
+	font-size: 1em;
+	padding: 0.4em;
+}.menuNav li:hover{
+	background-color: #385fff;
+}
+
+/*clase qse activaba y desactivaba de forma dinamica en JS*/
+/*creaba el efecto de pegado del elemento*/
+ .pined{
+	position: fixed;
+	top:0px;
+} 
+.marginTop{
+	margin-top: 4rem;
+}
+/*------------*/
+
+.mainej{
+	height: 200vh;
+}
+
+
+/*------------*/
+.heroImage{
+	background: url("./img/panda_152k_1920_1080.jpg");
+	height: 105%;
+	width: 100vw;
+	background-repeat: repeat-x;
+	background-size: cover; 
+	background-position: -60px 0px; /*center;*/
+}
+
+.LayHeroImage{
+	height: 75vh;
+	width: 100%;
+	display:flex;  /*¿? Sin esto, las lineas de abajo no funciona ¿?*/
+	align-items: flex-end; /*texto queda abajo*/
+	/*padding-bottom: 5%; da un respiro, no queda tan abajo*/
+	position: relative;
+}
+
+.heroImage__tex{
+position: absolute;
+left: 20px;
+bottom: 50px;
+color:white; 
+/*text-align: right;*/ /*Si lo quiero arriba a la derecha debo desativar .LayHeroImage y acivar este estilo y margin-right*/
+text-shadow: 2px -2px 0px #2d3436;
+/*margin-right: 40px;*/
+/*margin-bottom: : 10px;*/
+}
+
+
+.heroImage__tex h1{
+	font-size: 2.6em;
+	margin: 0px;
+	padding: 0px;
+}
+
+.heroImage__tex p{
+	font-size: 1.2em;
+	margin: 0px;
+	padding: 0px;
+}

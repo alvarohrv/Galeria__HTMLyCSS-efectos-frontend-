@@ -1,0 +1,92 @@
+
+@keyframes opacity {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+
+@keyframes change4 {
+  0%, 12.66%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  16.66%, 29.32% { /*16.66% - 29.32% = tiempo de persistencia*/
+    transform: translate3d(0, -25%, 0);
+  }
+  33.32%, 45.98% {
+    transform: translate3d(0, -50%, 0);
+  }
+  49.98%, 62.64% {
+    transform: translate3d(0, -75%, 0);
+  }
+  66.64%, 79.3% {
+    transform: translate3d(0, -50%, 0);
+  }
+  83.3%, 95.96% {
+    transform: translate3d(0, -25%, 0);
+  }
+}
+/*
+100 / 4 = 25 en X; translate3d(0, -X%, 0)
+0% → línea 1
+-25% → línea 2
+-50% → línea 3
+-75% → línea 4
+*/
+
+/* Con 6 elementos, la lógica debería usar 100 / 6 ≈ 16.66%  */
+
+/*@keyframes change6 {
+  0%, 8.33%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  16.66%, 24.99% {
+    transform: translate3d(0, -16.66%, 0);
+  }
+  33.32%, 41.65% {
+    transform: translate3d(0, -33.32%, 0);
+  }
+  49.98%, 58.31% {
+    transform: translate3d(0, -49.98%, 0);
+  }
+  66.64%, 74.97% {
+    transform: translate3d(0, -66.64%, 0);
+  }
+  83.3%, 91.63% {
+    transform: translate3d(0, -83.3%, 0);
+  }
+}*/
+/*
+Línea 1 en 0%–8.33%
+Línea 2 en 16.66%–24.99%
+Línea 3 en 33.32%–41.65%
+Línea 4 en 49.98%–58.31%
+Línea 5 en 66.64%–74.97%
+Línea 6 en 83.3%–91.63%
+*/
+
+
+
+
+@keyframes change5_with_return{
+  0%, 5%     { transform: translateY(0); }
+  10%, 15%   { transform: translateY(-20%); }
+  20%, 25%   { transform: translateY(-40%); }
+  30%, 35%   { transform: translateY(-60%); }
+  40%, 45%   { transform: translateY(-80%); }
+
+  /* Regreso */
+  50%, 55%   { transform: translateY(-60%); }
+  60%, 65%   { transform: translateY(-40%); }
+  70%, 75%   { transform: translateY(-20%); }
+  80%, 85%   { transform: translateY(0); }
+
+  /* Pausa final antes de reiniciar */
+  90%, 100%  { transform: translateY(0); }
+}
+
+
+/*# sourceMappingURL=style.css.map */

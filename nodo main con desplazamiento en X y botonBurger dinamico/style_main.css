@@ -1,0 +1,101 @@
+
+
+/* mainContainer contiene el sider oculto, el cuerpo princiapl y el sider a desplazar!!!*/
+.mainContainer{  /*contenedor principal*/
+	width: 120vw; /* 20 vw para jugar con el desplazamiento */
+	/*border: 2px solid red;*/
+	white-space: normal; /*gracias a esta propiedad los elementos de bloque se salen del ancho de la pantalla*/
+	position: relative;
+	
+	/*el .mainContainer tendra la animacion de mostrar y esconder el menu, re acomodor el contenido*/
+	left: -20vw;
+	/*left: 100vw;*/ /*Con esta vaiable se trabaja para ESCONDER el menu principal*/
+	transition: left 0.580s cubic-bezier(0, 0.2, 0.8, 1);
+	/*transition: left 0.8s cubic-bezier(0, 0.2, 0.8, 2);*/ /*curioso ^^*/
+}
+
+
+/*simulando contenido - borrable*/
+.darGranVH{
+	height: 200vh;
+	outline: 1px solid blue;
+}
+
+/*.ikonoMenuH{
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 15px;
+	outline: 1px solid red;
+}*/
+
+.mainContainer .layContenido{
+	/*overflow-y: scroll;*/
+	margin-left: -0.6vw; /*para comer un poco a la izq y no ver la barra // margin-right: negativos, no funkan*/
+	/*margin-left: -1vw;*/
+	padding-left: 3px;
+	width: 78vw; /* 19.9 menu 60content y 20 sider*/
+	position: relativ1e;
+}
+
+.sider_right{
+	width: 19vw;
+}
+
+
+.mainContainer .layLateralMenu{
+	width: 19.9vw; /*Con esta vaiable se trabaja para MOSTRAR el menu principal*/
+				/*se complementa con el comido del .laContenido*/
+	height: 80vh;
+	border: 1px solid black;
+
+	/*estilos del menu*/
+	background-color: 	#222;
+	color: 	#fff;
+	text-align: center;
+}
+
+.mainContainer .layLateralMenu li{
+		font-size: 32px;
+		padding: 	8px 15px;
+		list-style-type: 	none;
+		border-bottom: 	solid 2px #eee;
+}
+
+/***************************************************************/
+.mainContainer .layLateralMenu,
+.mainContainer .layContenido,
+.mainContainer .sider_right{
+	display: inline-block; /*para poder usar vertical-align*/
+	vertical-align: top; /*la barra empieza desde arriba*/
+	/*height: 100vh;*/
+}
+
+/*solo cuando la clase .mainContainer poseea la calse .open entonce...*/
+.openMenu{ 
+	left:0vw;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*.mainContainer *{
+	white-space: normal;
+}*/
+
+/* Demostrativo del movimeinto del contenedor */
+/*
+.mainContainer:hover{
+	left:0vw;
+}
+*/
+/*.overflow_hidden{
+	overflow-x: hidden;	
+}*/
+

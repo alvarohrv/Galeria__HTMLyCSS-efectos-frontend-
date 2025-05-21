@@ -1,0 +1,102 @@
+/*Estilos principales del efecto*/
+
+/** {
+  outline: 1px solid blue;
+}*/
+
+.content {
+  position: relative;
+  width: auto; /*le definira el hijo*/
+  height: auto;
+   background-color: #5b5b5b75; 
+  /* position: absolute; */
+  /* top: 50%; */
+  /* left: 50%; */
+  /* height: 160px; */
+  overflow: hidden;
+  font-family: "Lato", sans-serif;
+  font-size: 35px;
+  line-height: 40px;
+  color: #ecf0f1;
+  margin: 5px;
+}
+
+/*Mascara para mostrar solo una linea*/
+.content__container {
+  font-weight: 600;
+  padding: 0 40px;
+  width: 422px;
+
+  overflow: hidden;
+  height: 40px;
+}
+/* corchetes */
+.content__container:before {
+  content: "[";
+  left: 0px;
+}
+.content__container:after {
+  content: "]";
+/*  position: absolute;*/
+  right: 40px;
+}
+
+.content__container:after, .content__container:before {
+  position: absolute;
+  top: 0;
+  color: #16a085;
+  font-size: 42px;
+  line-height: 40px;
+  /*Animacion frame:opacity*/
+  animation-name: opacity;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+.content__container__text {
+  display: inline;
+  float: left;
+/*  position: absolute;*/ /*y es mejor usar este*/
+  margin: 0;
+}
+.content__container__list_change4 {
+  margin-top: 0;
+  padding-left: 110px;
+  /*
+  Otra opcion:
+  position: absolute;
+  right: 70px;
+    */
+  text-align: left;
+  list-style: none;
+  /*Animacion frame:change4*/
+  animation-name: change4;
+  animation-duration: 12s;
+  animation-iteration-count: infinite;
+}
+
+.content__container__list__item {
+  line-height: 40px; /*garantizar altura*/
+  margin: 0;
+}
+
+/*  //////////////////   */
+
+.content__container__list_change5_with_return {
+  margin-top: 0;
+  padding-left: 110px;
+  /*
+  Otra opcion:
+  position: absolute;
+  right: 70px;
+    */
+  text-align: left;
+  list-style: none;
+  /*Animacion frame:change5_with_return*/
+  animation-name: change5_with_return;
+  animation-duration: 12s;
+  animation-iteration-count: infinite;
+  padding: 0 0 5px 200px; /*para que quepa la palabra palindromo jeje y 5px porque las letras no cuadraban perfectamente REVIZAR*/
+}
+
+
+
