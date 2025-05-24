@@ -1,0 +1,169 @@
+/*DISEÑO MOVIL FIRST*/
+
+/*tarea: altura dinamica segun los li que pueda tener; en Movil no necesariamente hay mouse corregir la UX*/
+
+/*Basico*/ 
+body{
+	display: flex; /* Convierte el body en un contenedor flex */
+    flex-direction: column; /* Apila los hijos verticalmente, evita el row por defecto */
+	height: 100vh;	
+	width: 100vw;
+}
+.contHeader{}
+.header{
+	/*evitar dezplazar hacia abajo cont inferior*/
+	position: relative;
+}
+.hero_-header{
+	height: 200px;
+	background-color: #777
+}
+.contMainAndAside{
+	width: 100%;
+	/* height: 100%; // mejor flex-grow */
+	flex-grow: 1; /* Ocupa todo el espacio vertical restante */
+	/* height: calc(100% - (200px) - (39px)); */
+}
+.contMain{
+	background: url(low-poly-grid-haikei.svg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+/*simula espacio del logo - no importante*/
+.contdiv-logo_-nav{
+	display: none;
+}
+
+/*--------------*/
+
+/* BARRA BURGER -- no contiene el ul como tal */
+.div-navbarBrg_-header{ /*barra responsive*/
+	background: var(--navbar-color);
+	padding:10px;
+	font-size: var(--textLg);
+	color: var(--w);
+	cursor: pointer;
+	display:block;
+	height: var(--h-nav-bar);
+}
+.span-burger_-div-navbar{
+	text-align: center;
+}
+
+/*--------------*/
+/* BARRA NAV -- contiene el ul como tal */
+/* se comparte en deskANDmovil // ver CCS modo escritorio*/
+
+.nav_-header{  /*Barra nav (flotante) como tal NONE en movil first*/
+	display: none;
+	width: 100vw; /*recomendable en movilfirst*/
+	/*efecto ocultar*/
+	margin-left: -120%;
+	/*pocisionando el menu espacialmente*/
+	position: absolute;
+	top: var(--h-nav-bar);
+	left: 0;
+} /*no posee contenido porque el ul tambien esta oculto*/
+
+/* --- EFECTO de desplazamiento del menu principal --- */
+
+/*Evento click en .span-burger_-div-navbar */
+.nav_-header.nav-mostrar-menu{ /*efecto mostrar menu   -- JS */
+	margin-left: 0%;
+	display: block;
+	/*con setTimeout se manejan los tiempo para 
+	lograr efecto de transition, si no se rompe esa propiedad*/
+}
+
+.nav_-header .ul-menu_-nav{ /*ul principal, inicialOculto, aspectoBasico*/
+	background: var(--nav-bar2-color); /*#555 gris*/
+	width: 100%;
+	padding: 0.2rem;
+	padding-left: 1rem;	
+
+	/*efecto ocultar sub*/
+	transition: all 0.5s;
+	height: 0;
+	overflow: hidden;
+	/*nota: con JS tomara valores auto si se activa el subMenu*/
+}
+
+/*Evento click en .span-burger_-div-navbar */
+.ul-menu_-nav.ul-mostrar-menu{ /*efecto mostrar sub  -- JS*/
+	height: 150px; /* variante segun el # de li, TAREA  hacer mas dinamico */
+	/*con setTimeout se manejan los tiempo para 
+	lograr efecto de transition, si no se rompe esa propiedad*/
+	/*nota: con JS tomara valores auto si se activa el subMenu*/	
+}
+
+
+/*----------------*/
+/* --- EFECTO sobras y de desplazamiento del SUBmenu --- */
+/*Efecto del sub menu compartido entre deskANDmovil*/
+
+.li-items_-ul-menu{} /*items principales*/
+
+.li-items_-ul-menu.li-items--WhitSubM{
+	/* outline: solid 3px rgb(100, 45, 136); */
+	/* NO PUEDE TENER height es dinamico*/
+}
+
+/*sombra en los items principales*/ /*!*/
+.li-items_-ul-menu:hover{
+	background-color: var(--b-color);
+}
+/*sombra en los sub items*/ /*!*/
+.li-items_-ul-menu:hover.inSubM{
+	background-color: red;
+}
+
+.a-link_-li-items{
+	padding: 0.5rem;
+	color:var(--w);
+	font-size: var(--textLg);
+	/*other*/
+	display: block;
+}
+
+/*ul del sub menu - EFECTO*/
+.li-items_-ul-menu .ul-menuSub_-li-items{ /*!!!*/
+	color: transparent;
+	padding-left: 1rem;
+	/*para el efecto (permanece oculto)*/
+	transition: all 1s;
+	height: 0;
+	overflow: hidden;
+	/*
+	se uso overflow: hidden; y height: 0; juntos
+	para colapsar y hacer el efecto acordion
+	*/
+
+	/* outline: 1px solid red; */
+}
+
+/*toogle SUB MENU-- IN BURGER --  manejado por -- JS */
+.li-items_-ul-menu .ul-menuSub_-li-items.mostrar-submenu{
+	height: 150px;
+	/*con setTimeout se manejan unos tiempo para 
+	lograr efecto de transition, si no se rompe esa propiedad*/
+	
+	/* outline: 1px solid hotpink; */
+}
+
+
+/*///////////borrable//////////*/
+.prueba{
+    width: 100px;
+	height: 10px;
+	background-color: red;
+	transition: all 1s;
+}
+.cambio{
+	height: 100px;
+	background-color: blue;
+}
+

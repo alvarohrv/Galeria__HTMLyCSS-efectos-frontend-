@@ -1,0 +1,4 @@
+
+Recordar:
+se trabajara las clases CSS con BEN y pensado en la falcil exportabilidad
+El index sera trabajado de tal forma que pueda ser re editable en otros projectos
