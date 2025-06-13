@@ -1,0 +1,64 @@
+
+.ContHeader{
+	background: grey;
+	background-repeat: no-repeat;
+	padding: 16px 20px;
+	border-radius: 15px;
+	margin: 20px 0;
+	position: relative;
+	height: 18vh; 
+	overflow: hidden;
+}
+
+.imgFondoHero{
+	position: absolute;
+	height: 210px;
+	top: -40px;
+	right: 40px;
+	transform:rotate(25deg);
+	opacity: 0.4;
+
+
+}
+
+
+.heroImage{
+	height: 50vh; /*fijamos al 75% de la pantalla*/
+	padding:2em; /*para que dar un mejor marco a las cajas de textos internas, vasta concualquier valor realmente*/
+	background: url("../img/panda_152k_1920_1080.jpg");
+	/*con una imagen .png traslucida (por photohop) se puede tar tonos mediante la forma:
+		background: url('imagenx.png'), rgb(0,0,0);
+	*/
+	background-size: cover; /*la mejor opcion para las HERO*/
+	background-position: -50px -80px;   /*puede ser 'center;' */
+}
+
+.LayHeroImage{ /*usando layaout flex*/
+	display:flex;  /*Sin esto, las lineas de abajo no funciona ¿?*/
+	align-items: flex-end; /*texto queda abajo*/
+	/*justify-content: center;*/ /*si lo quisieramos centrar en la horizontal*/
+	padding-bottom: 5%; /*da un respiro, no queda tan abajo ^^! */
+	/*nota: recordar que la imagenHERO es un backgroun y no un <div> hermano del contndTexto*/
+
+}
+
+/*contenedor de textos*/
+.heroImage__tex{
+color:white; 
+/*text-align: right;*/ /*Si lo quiero arriba a la derecha debo desativar .LayHeroImage y acivar este estilo y margin-right*/
+text-shadow: 2px -2px 0px #2d3436; /*la sombra afecta al h1 y a p por igual*/
+/*margin-right: 40px;*/
+
+}
+
+.heroImage__tex h1{
+	font-size: 56px;
+	margin: 0px; /*esto puede estar definido en normalize*/
+	padding: 0px;
+}
+
+.heroImage__tex p{
+	font-size: 18px;
+	margin: 0px;
+	padding: 0px;
+}
