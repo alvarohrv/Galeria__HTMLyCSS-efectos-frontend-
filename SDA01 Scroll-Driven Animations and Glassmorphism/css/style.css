@@ -1,0 +1,221 @@
+
+/* ------- SECCION CON IMAGEN DE FONDO (BACKGROUND)  ------- */
+/* ----------- Contenedor de tarjetas .cards ----------------*/
+/* ----------------- CARD Y EFECTO BACKDROP ---------------- */
+/* ------------- SCROLL ANIMATION DE LAS CARDS ------------- */
+/* ------- Estilos de los elementos internos de la card -----*/
+/* ----------- EFECTO TEXTO CON SCROLL ANIMATION ----------- */
+/* ----- ESTILOS COMPLEMENTARIOS PARA LA DEMOSTRACION ------ */
+
+
+/* ------- SECCION CON IMAGEN DE FONDO (BACKGROUND)  ------- */
+/*Para resaltar las cards con efecto*/
+.bg-section {
+  min-height: 100vh;
+  /* width: 100vw; */
+  width: 100%;
+  
+  background-image: 
+    linear-gradient(
+      rgba(0,0,0,0.35),
+      rgba(0,0,0,0.35)
+    ),
+    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee");
+
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  /* el fondo se fija al viewport, no al elemento. */
+  /* al ser fixed, la imagen de fondo no se mueve al hacer scroll */
+
+  padding: 8rem 1rem;
+}
+/* El overlay es un gradiente semitransparente para oscurecer la imagen de fondo, en este caso es rgba(0,0,0,0.35) */
+
+/* Soporte para backdrop-filter, si no es soportado entonces usar background semitransparente */
+
+/* ----------- Contenedor de tarjetas .cards ----------------*/
+.cards { /*Contenedor de tarjetas*/
+  max-width: 1100px;
+  margin: auto;
+  padding: 6rem 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+}
+
+
+@supports not (backdrop-filter: blur(10px)) {
+  .card {
+    background: rgba(255,255,255,0.85);
+  }
+}
+
+/* ----------------- CARD Y EFECTO BACKDROP ---------------- */
+/*Glassmorphism (backdrop-filter */
+.card {
+  /* background: white; */
+  border-radius: 1.2rem;
+  overflow: hidden;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.25);
+  box-shadow: 0 20px 40px rgba(0,0,0,.25);
+  /* box-shadow: 0 10px 25px rgba(0,0,0,.08); */
+
+  /* Efecto de fondo difuminado y escala de grises */
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(3px) grayscale(20%);
+  /*backdrop-filter permite aplicar efectos visuales como desenfoque y escala de grises al fondo del elemento*/
+  -webkit-backdrop-filter: blur(3px) grayscale(20%);
+}
+
+/* ------------- SCROLL ANIMATION DE LAS CARDS ------------- */
+/* view-timeline y animation-timeline */
+
+@keyframes card-appear {
+  from {
+    opacity: 0;
+    transform: translateY(45px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.card {
+  /* Estado inicial */
+  opacity: 0;
+  transform: translateY(40px) scale(0.96);
+
+  /* Scroll timeline */
+  view-timeline-name: --card;
+  view-timeline-axis: block;
+
+  animation-name: card-appear;
+  animation-timeline: --card;
+  animation-range: entry 0% cover 35%;
+  animation-fill-mode: both;
+  animation-timing-function: ease-out;
+}
+
+/* ------- Estilos de los elementos internos de la card -----*/
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 1.5rem;
+  /* color: white; */
+}
+
+.card-content h3 {
+  margin: 0 0 0.5rem;
+}
+
+.card-content p {
+  margin: 0;
+  opacity: 0.75;
+}
+
+/* ----------- EFECTO TEXTO CON SCROLL ANIMATION ----------- */
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.texto {
+  font-size: 2rem;
+  margin: 4rem 0;
+  text-align: center;
+  opacity: 0;
+
+  /* Scroll timeline */
+  view-timeline-name: --aparecer-tl;
+  view-timeline-axis: block;
+  /* ASOCIAR LA ANIMACION CON EL TIMELINE */
+  animation-name: aparecer;
+  animation-timeline: --aparecer-tl;
+  animation-range: entry 10% cover 50%;
+  animation-fill-mode: both;
+  animation-timing-function: ease-out;
+}
+
+
+/* ----- ESTILOS COMPLEMENTARIOS PARA LA DEMOSTRACION ------ */
+
+.roboto-regular {
+	font-family: "Roboto", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+}
+
+/* ---------- CONTENIDO ---------- */
+/* main {
+  padding: 6rem 1rem;
+} */
+
+section {
+  max-width: 700px;
+  margin: auto;
+}
+
+/* ---------- HERO ---------- */
+/*El HERO ocupa gran parte de la pantalla para visualizar el efecto de la animación */
+
+/* Animación suave de la flecha */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+.herodiv {
+  height: 100vh;
+  background: linear-gradient(135deg, #a5d8ff, #d0ebff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero-content {
+  max-width: 700px;
+  padding: 2rem;
+}
+
+.hero-content h1 {
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  opacity: 0.85;
+}
+
+/* Indicador de scroll */
+.scroll-indicator {
+  /* display: flex; */
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  
+  margin-top: 3rem;
+  animation: bounce 1.8s infinite;
+  opacity: 0.8;
+}
+
+.scroll-indicator svg {
+  width: 28px;
+  height: 28px;
+}
