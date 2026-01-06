@@ -17,7 +17,7 @@
 
 .menuNav li{
 	/*border: 1px solid black;*/
-/*	height: 4rem;*/
+	height: 4rem;
 	display: inline-block;
 	margin-left: 0.5em;
 	font-size: 1em;
@@ -40,23 +40,36 @@
 
 
 /*------------*/
-.heroImage{
+
+.LayHeroImage {
+  height: 75vh;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  overflow: hidden;
+}
+
+/*.heroImage{
 	background: url("./img/panda_152k_1920_1080.jpg");
 	height: 105%;
 	width: 100vw;
 	background-repeat: repeat-x;
 	background-size: cover; 
-	background-position: -60px 0px; /*center;*/
-}
+	background-position: -60px 0px;
+}*/
 
-.LayHeroImage{
-	height: 75vh;
-	width: 100%;
-	display:flex;  /*¿? Sin esto, las lineas de abajo no funciona ¿?*/
-	align-items: flex-end; /*texto queda abajo*/
-	/*padding-bottom: 5%; da un respiro, no queda tan abajo*/
-	position: relative;
-}
+.LayHeroImage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("./img/panda_152k_1920_1080.jpg");
+  background-repeat: repeat-x;
+  background-size: cover; 
+  background-position: -60px 0px;
+  filter: brightness(1.1);
+  z-index: -1;
+} /*No se usa el div adicional*/
 
 .heroImage__tex{
 position: absolute;
