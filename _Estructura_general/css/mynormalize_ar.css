@@ -1,4 +1,4 @@
-/*///////mynormalize_ar.css///////  V 1.0.4 */  /*Ver COMPENDIO_CSS... para normalize mas actulizado*/
+/*///////mynormalize_ar.css///////  V 1.0.5 */  /*Ver Repositorio... para normalize mas actulizado*/
 
 :root {
 	/*Colors*/
@@ -132,6 +132,11 @@ footer{margin: 0 auto; padding: 0;/*width: 95%*; max-width: 1200px; padding: 1re
 	/*//Header/////////////////////////////////////////////////////////*/
 	  .contHeader{min-width: var(--wrapContainer);}
 	  .contLogo{}
+	/*//navbar/////////////////////////////////////////////////////////*/
+		.navbar{position: sticky;}
+		.navbar ul {display: flex; justify-content: left; align-items: center; gap: 1rem; /*opcional*/ }
+		.navbar a{display: block; width: 100%; padding: 0.75rem 1rem}
+
 	/*//flexMainAside/////////////////////////////////////////////////////////*/
 	  .contMainAside{display: flex; margin: 0; min-width: var(--wrapContainer);}
 	  /* ||.contMainAside ||.coverMainAside || .cover*/
@@ -142,3 +147,36 @@ footer{margin: 0 auto; padding: 0;/*width: 95%*; max-width: 1200px; padding: 1re
 	  .contAside{ margin: 0; }
 	/*//Footer/////////////////////////////////////////////////////////*/
 	  .contFooter{ margin: 0; min-width: var(--wrapContainer);}
+	
+	/*///////////////////////// IMAGE HERO (OPCIONAL) //////////////////////////////////*/
+	/*//LayHeroImage/////////////////////////////////////////////////////////*/
+/*	.LayHeroImage{
+		height: 75vh;
+		width: 100%;
+		display:flex;
+		align-items: flex-end; 
+		position: relative;
+	 }*/
+ 	/*//heroImage/////////////////////////////////////////////////////////*/
+/*  .herodiv__img{
+		background: url("https://picsum.photos/id/674/600/400");
+		height: 105%;
+		width: 100vw;
+		background-repeat: repeat-x;
+		background-size: cover; 
+		background-position: -60px 0px;
+	}*/
+	/*//heroImage/////////////////////////////////////////////////////////*/
+/*	.herodiv__tex{
+		position: absolute;
+		left: 20px;
+		bottom: 50px;
+		color:white; 
+		text-shadow: 2px -2px 0px #2d3436;
+	}*/
+	/*////////////////////////////////////////////////////////////////////////////////////*/
+
+
+
+
+

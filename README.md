@@ -7,3 +7,6 @@ P - Parallax
 T - Texto
 W - wave
 SDA - ScrollDrivenAnimation
+
+IMG-FAV
+https://picsum.photos/id/674/600/400
