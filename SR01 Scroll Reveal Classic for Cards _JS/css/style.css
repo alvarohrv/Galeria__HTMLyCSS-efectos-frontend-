@@ -1,0 +1,241 @@
+/*SR01 Scroll Reveal Classic for Cards _JS*/
+
+/* --------------------- Scroll Reveal -------------------- */
+/* -------------------- Fondo del main -------------------- */
+/* --------------- Línea divisoria central --------------- */
+/* ----------- Filas alternadas (grid 50 / 1fr) ------------ */
+/* -------------- Posicionamiento alternado ------------- */
+/* ------------------ Estilo de las cards ----------------- */
+/* ------------------------- HERO ----------------------- */
+
+/*
+NOTAS:
+Es un Scroll Reveal: elementos que se revelan (aparecen con animación) al entrar en el viewport al hacer scroll.
+NO es (usa) Scroll-Driven Animation continua (no view-timeline, no progreso ligado al scroll).
+
+Este 'Scroll Reveal clásico' usa: event-based, one-shot animation.
+- El scroll solo dispara el evento
+- La animación:
+Empieza con un pequeño delay
+Se ve en cascada si entran varios elementos
+Movimiento en Y + fade
+Una vez termina → estado final persiste
+Solo se reinicia al refrescar la página
+EFECTO MUY SIMILAR A LA LIBRERIA: scrollreveal.js.
+*/
+
+
+/* --------------------- Scroll Reveal -------------------- */
+/*EFECTO + REQUIERE CSS */
+
+/* Nota: no hay keyframes */
+
+/* .split-card {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+} */
+ /*con uso de escala*/
+.split-card {
+  opacity: 0;
+  transform:
+    translateY(40px)
+    scale(0.90);
+  transition:
+    opacity 1.5s ease,
+    transform 1.5s ease;
+}
+
+/* EL ORDEN IMPORTA*/ 
+/* Da un efecto de desplazamiento y escala */
+.left .split-card {
+  transform:
+    translateX(-20px)
+    translateY(40px)
+    scale(0.90);
+}
+/* EL ORDEN IMPORTA*/ 
+/* Da un efecto de desplazamiento y escala */
+.right .split-card {
+  transform:
+    translateX(20px)
+    translateY(40px)
+    scale(0.90);
+}
+
+/* Estado visible */
+/* .split-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+} */
+ /* Estado final */
+.split-card.is-visible {
+  opacity: 1;
+  transform:
+    translateX(0)
+    translateY(0)
+    scale(1);
+}
+/*Persistencia visual = clase .is-visible*/
+
+/* Cascada suave */
+.split-card {
+  transition-delay: var(--delay, 0ms);
+}
+
+
+
+
+
+/* -------------------- Fondo del main -------------------- */
+
+.axis-main {
+  position: relative;
+  /* min-height: 100vh; */
+  padding: 6rem 0;
+  background: linear-gradient(
+    135deg,
+    #7e634f,
+    #312924
+  );
+}
+
+
+/* --------------- Línea divisoria central --------------- */
+
+.axis-line {
+  /* position: fixed; */
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  margin: 6rem 0;
+  height: 1700px;
+  /* height: 100%; */
+  background: black;
+  opacity: 0.6;
+  transform: translateX(-50%);
+}
+/* tambien llamada .split-line {} */
+/* Esta línea no participa del layout, solo guía visual. */
+
+/* ----------- Filas alternadas (grid 50 / 1fr) ------------ */
+.row {
+  display: grid;
+  grid-template-columns: 50vw 1fr;
+  /* align-items: center; */
+  min-height: 350px;
+}
+/* .split-row {} */
+
+/* -------------- Posicionamiento alternado ------------- */
+
+.half {
+  display: flex;
+  align-items: center;
+}
+
+.left-half {
+  justify-content: flex-end;
+  padding-right: 3rem;
+}
+
+.right-half {
+  justify-content: flex-start;
+  padding-left: 3rem;
+}
+
+
+
+/* .split-row.left {
+  justify-items: start;
+}
+.split-row.right {
+  justify-items: end;
+} */
+
+/* ------------------ Estilo de las cards ----------------- */
+.split-card {
+  max-width: 420px;
+  margin: 0 4rem;
+  padding: 2rem;
+
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 1.2rem;
+  border: 1px solid rgba(255,255,255,0.25);
+
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+.split-card h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.6rem;
+}
+.split-card p {
+  margin: 0;
+  line-height: 1.6;
+  opacity: 0.75;
+}
+
+.split-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+.card-content {
+  padding: 1.5rem;
+}
+
+
+/* ------------------------- HERO ----------------------- */
+/*El HERO ocupa gran parte de la pantalla para visualizar el efecto de la animación */
+
+/* Animación suave de la flecha */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+.herodiv {
+  height: 100vh;
+  background: linear-gradient(135deg, #a5d8ff, #d0ebff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero-content {
+  max-width: 700px;
+  padding: 2rem;
+}
+
+.hero-content h1 {
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  opacity: 0.85;
+}
+
+/* Indicador de scroll */
+.scroll-indicator {
+  /* display: flex; */
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  
+  margin-top: 3rem;
+  animation: bounce 1.8s infinite;
+  opacity: 0.8;
+}
+
+.scroll-indicator svg {
+  width: 28px;
+  height: 28px;
+}
