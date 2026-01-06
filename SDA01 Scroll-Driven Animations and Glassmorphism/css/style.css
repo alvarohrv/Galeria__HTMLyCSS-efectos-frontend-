@@ -4,6 +4,7 @@
 /* ----------------- CARD Y EFECTO BACKDROP ---------------- */
 /* ------------- SCROLL ANIMATION DE LAS CARDS ------------- */
 /* ------- Estilos de los elementos internos de la card -----*/
+/* ----------- card con texto UVA en marca de agua ---------*/
 /* ----------- EFECTO TEXTO CON SCROLL ANIMATION ----------- */
 /* ----- ESTILOS COMPLEMENTARIOS PARA LA DEMOSTRACION ------ */
 
@@ -118,6 +119,73 @@
 .card-content p {
   margin: 0;
   opacity: 0.75;
+}
+
+/* ----------- card con texto UVA en marca de agua ---------*/
+
+.extra-section{
+  padding: 6rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.extra-section .card-unique{
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 1.2rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+  /*Lindo, pero afecta imagen*/
+  /* mix-blend-mode: lighten; */
+  
+  box-shadow: 0 20px 40px rgba(0,0,0,.25);
+  /* box-shadow: 0 10px 25px rgba(0,0,0,.08); */
+  /* Efecto de fondo difuminado y escala de grises */
+  /* background: rgba(255, 255, 255, 0.3); */
+  backdrop-filter: blur(10px) grayscale(0%);
+  /*backdrop-filter permite aplicar efectos visuales como desenfoque y escala de grises al fondo del elemento*/
+  -webkit-backdrop-filter: blur(10px) grayscale(0%);
+}
+
+.extra-section .card-unique img {
+    /* height: 350px; */
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;    
+}
+
+.extra-section .card-unique .card-content{
+    width: 30%;
+    background: rgba(255, 255, 255, 0.2);
+    /* backdrop-filter: blur(10px) grayscale(20%);
+    mix-blend-mode: lighten; */
+}
+.extra-section .card-unique .card-content h3 {
+    font-size: var(--textExtaLg)
+}
+.extra-section .card-unique .card-content p {
+    font-size: var(--textLg)
+}
+.extra-section .card-unique .card-content span {
+  font-weight: 900;
+  font-size: 2.2rem;
+
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0.1)
+  );
+
+  /*NO funciona aca*/
+  /* mix-blend-mode: lighten; */
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 /* ----------- EFECTO TEXTO CON SCROLL ANIMATION ----------- */
