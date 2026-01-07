@@ -1,0 +1,112 @@
+<!DOCTYPE html >
+<html lang="es">
+<head>
+  <meta charset="uft-8" />
+	<title> </title>
+	<!-- Titul que aparece en la pestaña y en la busqueda de google -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Para responsive web design -->
+	<meta name="description" content="descripcion de la pagina web">
+	<!-- texto descritivo de la pag que usa por ejemplo google -->
+	<title> title undefined </title>
+	<meta name="author" content="Alvaro Ruiz">
+	<style>
+		figure img{
+			width: 240px;
+			height: auto;
+			scroll-snap-align: start;
+			border-radius: 10px;
+			object-fit: cover;
+			scroll-snap-align: center;
+			border-radius: 15px;
+		}
+		/*---------------iTERACION 4-----------------*/
+		.iteracion04{
+			display: flex;
+			flex-direction: row;
+			width: 350px;
+			overflow-x: auto;
+			scroll-snap-type: x mandatory;
+			gap: 10px;
+			scroll-behavior: smooth;
+			border: 4px solid black;
+			border-radius: 15px;
+			/*esconder el scroll horizontal*/
+			/* Firefox */
+			scrollbar-width: none;
+			/* Internet Explorer 10+ */
+			-ms-overflow-style: none;  
+		}
+		.el_tope{
+			border-radius: 15px;
+			background: rgb(181, 8, 8);
+		}
+		/*-------------------------------------*/
+		.carrusel-wrapper{
+			width: fit-content;
+		position: relative;
+		display: flex;
+		align-items: center;
+		}
+		.btn {
+		position: absolute;
+		z-index: 10;
+		width: 42px;
+		height: 42px;
+		border-radius: 50%;
+		border: none;
+		background: rgba(0,0,0,0.6);
+		color: white;
+		font-size: 1.8rem;
+		cursor: pointer;
+		display: grid;
+		place-items: center;
+		transition: transform .2s;
+		}
+		.btn:hover {
+		background: rgba(0,0,0,0.85);
+		transform: scale(1.1);
+		}
+		.btn.prev {
+		left: 10px;
+		}
+		.btn.next {
+		right: 10px;
+		}
+	</style>
+</head>
+  <body class="contCentrado contBody">	
+	<div class="carrusel-wrapper">
+		<button class="btn prev" aria-label="Anterior">‹</button>
+		<figure class="iteracion04" id="id_slider_04">
+			<div class="el_tope">-</div>
+			<img src="https://picsum.photos/600/400?5" alt="">
+			<img src="https://picsum.photos/600/400?6" alt="">
+			<img src="https://picsum.photos/600/400?7" alt="">
+			<img src="https://picsum.photos/600/400?8" alt="">
+			<img src="https://picsum.photos/600/400?9" alt="">
+			<img src="https://picsum.photos/600/400?10" alt="">
+			<img src="https://picsum.photos/600/400?11" alt="">
+			<div class="el_tope">-</div>
+		</figure>
+		<button class="btn next" aria-label="Siguiente">›</button>
+	</div>
+	<script>
+		alert('hola')
+		const slider = document.getElementById('id_slider_04')
+		const btnPrev = document.querySelector('.btn.prev')
+		const btnNext = document.querySelector('.btn.next')
+
+		// ancho de una imagen + gap
+		const scrollAmount = 260
+
+		btnNext.addEventListener('click', () => {
+		slider.scrollBy({ left: scrollAmount, behavior: 'smooth' })
+		})
+
+		btnPrev.addEventListener('click', () => {
+		slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' })
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+
+<!DOCTYPE html >
+<html lang="es">
+<head>
+  <meta charset="uft-8" />
+	<title> </title>
+	<!-- Titul que aparece en la pestaña y en la busqueda de google -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Para responsive web design -->
+	<meta name="description" content="descripcion de la pagina web">
+	<!-- texto descritivo de la pag que usa por ejemplo google -->
+	<title> title undefined </title>
+	<link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+
+	<meta name="author" content="Alvaro Ruiz">
+	<meta name="keywords" content="">
+	<link rel="stylesheet" type="text/css" href="css/mynormalize_ar.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/style_media_minw800.css">
+	 <link rel="stylesheet" type="text/css" href="css/fontAw/all.min.css">
+ 	<link rel="shortcut  icon" href="../img/favicon.png">
+
+	<!-- Font roboto -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+	<style>
+		  .carrusel{
+	margin: 20px 0;
+	width: 100%;
+  }
+
+figure img{
+	width: 240px;
+	height: auto;
+	scroll-snap-align: start;
+	border-radius: 10px;
+	object-fit: cover;
+	scroll-snap-align: center;
+	border-radius: 15px;
+}
+.iteracion03{
+	display: flex;
+	flex-direction: row;
+	width: 350px;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	gap: 10px;
+	scroll-behavior: smooth;
+	border: 4px solid black;
+	border-radius: 15px;
+	/*esconder el scroll horizontal*/
+	/* Firefox */
+	scrollbar-width: none;
+	/* Internet Explorer 10+ */
+	-ms-overflow-style: none;  
+}
+.el_tope{
+	border-radius: 15px;
+	background: rgb(181, 8, 8);
+}
+
+	</style>
+</head>
+  <body class="contCentrado contBody">
+    <div class="contHeader wrapper1">
+    	<header class="header LayHeroImage">
+    		<!-- <figure class="herofig"><img src="" alt="Imagen de cabecera" class="herofig__img" /></figure> -->
+    		<div class="herodiv__tex"><h1>Hero</h1></div>
+    	</header></div> 	
+
+			<nav class="navbar">
+				<ul>
+					<li><a href="#seccion1">Section 1</a></li>
+					<li><a href="#seccion2">Section 2</a></li>
+				</ul>
+			</nav>
+    <div class="contMainAndAside">
+      <main class="contMain">
+          <section>
+            <articule><header></header><main>
+				<div class="carrusel-wrapper">
+					<button class="btn prev" aria-label="Anterior">‹</button>
+					<figure class="iteracion04" id="id_slider_04">
+						<div class="el_tope">-</div>
+						<img src="https://picsum.photos/600/400?5" alt="">
+						<img src="https://picsum.photos/600/400?6" alt="">
+						<img src="https://picsum.photos/600/400?7" alt="">
+						<img src="https://picsum.photos/600/400?8" alt="">
+						<img src="https://picsum.photos/600/400?9" alt="">
+						<img src="https://picsum.photos/600/400?10" alt="">
+						<img src="https://picsum.photos/600/400?11" alt="">
+						<div class="el_tope">-</div>
+					</figure>
+					<button class="btn next" aria-label="Siguiente">›</button>
+				</div>
+				<div class="carrusel">
+					<figure class="iteracion03">
+						<div class="el_tope_">-</div>
+						<img src="https://picsum.photos/600/400?5" alt="">
+						<img src="https://picsum.photos/600/400?6" alt="">
+						<img src="https://picsum.photos/600/400?7" alt="">
+						<img src="https://picsum.photos/600/400?8" alt="">
+						<img src="https://picsum.photos/600/400?9" alt="">
+						<img src="https://picsum.photos/600/400?10" alt="">
+						<img src="https://picsum.photos/600/400?11" alt="">
+						<div class="el_tope_">-</div>
+					</figure>
+				</div>
+				<div class="carrusel">
+					<figure class="iteracion02">
+						<img src="https://picsum.photos/600/400?5" alt="">
+						<img src="https://picsum.photos/600/400?6" alt="">
+						<img src="https://picsum.photos/600/400?7" alt="">
+						<img src="https://picsum.photos/600/400?8" alt="">
+						<img src="https://picsum.photos/600/400?9" alt="">
+						<img src="https://picsum.photos/600/400?10" alt="">
+						<img src="https://picsum.photos/600/400?11" alt="">
+					</figure>
+				</div>
+				<div class="carrusel">
+					<figure class="iteracion01">
+						<img src="https://picsum.photos/600/400?5" alt="">
+						<img src="https://picsum.photos/600/400?6" alt="">
+						<img src="https://picsum.photos/600/400?7" alt="">
+						<img src="https://picsum.photos/600/400?8" alt="">
+						<img src="https://picsum.photos/600/400?9" alt="">
+						<img src="https://picsum.photos/600/400?10" alt="">
+						<img src="https://picsum.photos/600/400?11" alt="">
+					</figure>
+				</div>
+			</main><footer></footer><articule>
+          </section>
+      </main>
+      <aside class="contAside"></aside>  
+    </div>
+    <footer class="contFooter"></footer>
+	<script src="js/script.js"></script>
+</body>
+</html>
+
+
+
+
+
+

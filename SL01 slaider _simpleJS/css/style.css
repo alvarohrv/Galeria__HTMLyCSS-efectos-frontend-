@@ -1,0 +1,118 @@
+/*CSS MOVIL FIRST*/
+/*-------------- GENERAL ---------------*/
+.roboto-regular {
+	font-family: "Roboto", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+  }
+
+  .carrusel{
+	margin: 20px 0;
+	width: 100%;
+  }
+
+figure img{
+	width: 240px;
+	height: auto;
+	scroll-snap-align: start;
+	border-radius: 10px;
+	object-fit: cover;
+	scroll-snap-align: center;
+	border-radius: 15px;
+}
+/*---------------iTERACION 4-----------------*/
+.iteracion04{
+	display: flex;
+	flex-direction: row;
+	width: 350px;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	gap: 10px;
+	scroll-behavior: smooth;
+	border: 4px solid black;
+	border-radius: 15px;
+	/*esconder el scroll horizontal*/
+	/* Firefox */
+	scrollbar-width: none;
+	/* Internet Explorer 10+ */
+	-ms-overflow-style: none;  
+}
+.el_tope{
+	border-radius: 15px;
+	background: rgb(181, 8, 8);
+}
+/*-------------------------------------*/
+.carrusel-wrapper{
+	width: fit-content;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.btn {
+  position: absolute;
+  z-index: 10;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: transform .2s, background .2s;
+}
+.btn:hover {
+  background: rgba(0,0,0,0.85);
+  transform: scale(1.1);
+}
+.btn.prev {
+  left: -20px;
+}
+.btn.next {
+  right: -20px;
+}
+/*------------------------------------------*/
+.iteracion03{
+	display: flex;
+	flex-direction: row;
+	width: 350px;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	gap: 10px;
+	scroll-behavior: smooth;
+	border: 4px solid black;
+	border-radius: 15px;
+	/*esconder el scroll horizontal*/
+	/* Firefox */
+	scrollbar-width: none;
+	/* Internet Explorer 10+ */
+	-ms-overflow-style: none;  
+}
+.el_tope_{
+	border-radius: 15px;
+	background: rgb(181, 8, 8);
+}
+/*------------------------------------------*/
+.iteracion02{
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	gap: 10px;
+	scroll-behavior: smooth;
+}
+/*------------------------------------------*/
+.iteracion01{
+	display: flex;
+	flex-direction: row;
+	width: 240px;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	gap: 10px;
+	scroll-behavior: smooth;
+}	
+
+
