@@ -77,7 +77,7 @@ html {  font-family: sans-serif; font-size: 62.5%; }  /* Now 10px = 1rem! */ /*d
 body {font-size: 16px; font-size: var(--textNormal); line-height: 1.5; margin: 0}
 		/*fuente: https://gist.github.com/mrwweb/5627502; */ /*si no soporta rem soportara px*/
 main {  display: block;}
-
+header{ margin: 0 auto; padding: 0;}
 /*heading*/
 h1,h2,h3,h4,h5,h6{
 		margin-top: 0;
@@ -103,8 +103,8 @@ img{max-width: 100%; height: auto; object-fit: contain; vertical-align: top; obj
 
 .figImg{display: block; width: auto; margin: 0; padding: 0; object-fit: cover; }
 
-header{ margin: 0 auto; padding: 0; /*width: 95%*; max-width: 1200px; padding: 1rem*/}
-main{max-width: 120.0rem; width: 100%; margin: 0 auto;} /*en pantalla <1200px toma el 95%*/
+header{max-width: 140.0rem}
+main{max-width: 140.0rem; width: 100%; margin: 0 auto;} /*en pantalla <1200px toma el 95%*/
 footer{margin: 0 auto; padding: 0;/*width: 95%*; max-width: 1200px; padding: 1rem*/}
 
 .bodyTag{
