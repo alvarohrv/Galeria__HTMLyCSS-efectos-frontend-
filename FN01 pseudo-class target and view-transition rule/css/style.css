@@ -1,0 +1,195 @@
+/*FN01 pseudo-class target and view-transition rule*/
+
+/* CSS para index002.html - sobre el uso de tag y la navegacion con @view-transition*/
+/* Sobre el uso de :target el cual se activa cuando la url de la pagina posee #hash */
+/* -------------  (extra) navegación con Pseudo-elemento espaciador -------------- */
+/* --------- Estilos generales --------- */
+
+
+/* ----------------------------------------------------------------------------------------- */
+
+/* CSS para index002.html - sobre el uso de tag y la navegacion con @view-transition*/
+
+@view-transition{
+	navigation:auto
+}
+/* 
+- Y USO DE view-transition-name en las imagenes (iguales por lo general) que @view-transition iba a suavizar
+- a veces no funciona en todos los navegadores o no funciona en la primera carga (de momento)
+*/
+
+ /*Estilos generales de index002.html*/
+.peq_foto{
+	margin: 25px auto;
+	padding: 5px 15px;
+	width: fit-content;
+	max-width: 1200px;
+	height: 20vh;
+	background-color: #74c2f7;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.big_foto{
+	background-color: aqua;
+	width: 30vw;
+	height: inherit;
+
+}
+.big_foto figure {
+	width: 100%;
+	height: 100%;
+}
+
+.seccion-unique{
+	width: 80%;
+	max-width: 1200px;
+	background-color: #74c2f7;
+	height: 20vh;
+	pointer-events: auto;
+	margin: 0px auto 40px auto;
+	padding: 5px 15px;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Sobre el uso de :target el cual se activa cuando la url de la pagina posee #hash */
+
+ /*este efecto se ve en el index.html*/
+
+.divsection_container{
+	height: 22vh;
+	width: 100%;
+	margin-top: 40px;
+	/* background-color: #385fff; */
+}
+
+.section{
+	width: 80%;
+	/* height: 20vh; */
+	background-color: #74c2f7;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	transition: opacity 1.2s ease, transform 2s ease, height 2s ease, margin 4s ease, padding 4s ease;
+}
+
+/* Estado oculto */
+.section_target {
+	opacity: 0;
+	height: 0;
+	transform: translateY(20px);
+	pointer-events: none;
+	margin: 0 auto;
+	padding: 0px 15px;
+}
+
+/* Estado visible */
+.section_target:target {
+	opacity: 1;
+	height: 20vh;
+	transform: translateY(0);
+	pointer-events: auto;
+	margin: 0px auto 40px auto;
+	padding: 5px 15px;
+}
+
+/*
+Las transiciones solo funcionan entre estados renderizados.
+display: none;   ← el elemento NO existe en el render
+display: block;  ← aparece de golpe
+Por eso se usan opacity, height, transform, pointer-events, etc
+*/
+
+ 
+/* -------------  (extra) navegación con Pseudo-elemento espaciador -------------- */
+.navbar{
+	background-color: #303f92;
+	color: #fff;
+	width: 100%;
+	position: sticky;/*IMPORTANTE ser hijo directo de 'body'(contenedor con scroll más cercano y de interes)*/
+	/*ateriormente requeria uso de JS de una clase .pined o .stick o .active*/
+}
+.navbar li::after {
+	content: "|";
+	position: absolute;
+	top: 15%;
+	transform: translateX(50%);
+	color: #ccc;
+	font-weight: bold;
+}
+.navbar li:first-child::after {
+	content: "";	
+}
+.navbar ul {
+	list-style: none;
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	gap: 1rem; /*opcional*/
+	padding: 0;
+	margin: 0;
+}
+.navbar a{
+	width: 100%;
+	color: #fff;   
+	text-decoration: none;
+	font-size: 1.5rem;
+	margin: 0 10px;
+	padding: 0.75rem 1rem;
+	transition: color 0.3s ease, background-color 0.3s ease;
+}
+.navbar li:hover a {
+	color: #e7dfdf;              /* cambia el color del texto */
+	background-color: #385fff;
+}
+
+
+/* --------- Estilos generales --------- */
+.roboto-regular {
+	font-family: "Roboto", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+  }
+
+section h2 {
+	font-size: 2.2rem;
+	color: #333;
+	margin-bottom: 2px;
+}
+.LayHeroImage {
+	height: 30vh;
+	width: 100%;
+	display: flex;
+	align-items: flex-end;
+	position: relative;
+	overflow: hidden;
+}
+
+.LayHeroImage::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: url("https://picsum.photos/id/674/1200/600");
+	background-position: 0px -250px;
+	background-size: cover;
+	background-repeat: no-repeat;
+	filter: brightness(0.4);
+	z-index: -1;
+}
+
+.heroImage__tex{
+	position: absolute;
+	left: 20px;
+	bottom: 50px;
+	color:white; 
+	/*text-align: right;*/ /*Si lo quiero arriba a la derecha debo desativar .LayHeroImage y acivar este estilo y margin-right*/
+	text-shadow: 2px -2px 0px #2d3436;
+	/*margin-right: 40px;*/
+	/*margin-bottom: : 10px;*/
+}
+
+section h3 {
+	font-size: 1.8rem;
+	color: #5d5d5d;
+	margin-bottom: 2px;
+}
