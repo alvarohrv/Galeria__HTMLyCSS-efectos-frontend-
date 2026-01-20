@@ -1,0 +1,51 @@
+:root {
+
+  /*colors*/
+  --blue-dark: #0d2c6c;
+  --blue-main: #123f8c;
+  --blue-soft: #1f5fbf;
+
+  --white: #FFFFFF;
+  --black: #000000;
+  --grey-main: #ffffff;
+  --grey-soft: #cecece;
+  --color-font-partner: #5d5d5d;
+  --color-font-partner_soft: #8d8d8d;
+
+  /*Medidas Personalizadas*/
+  /*medidas usadas en los sellos del hero*/
+}
+
+.flex_column_center{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.flex_row_center{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.max-w-cnt{
+  max-width: var(--max-w-cnt);
+  margin: 0 auto;
+}
+.ReglaTEMPORAL{
+  height: 30vh;
+  width: 100%;
+  background-color: rgb(255, 148, 148);
+}
+.p-inline{
+  padding-inline: 3rem;
+}
+.pointer{
+  cursor: pointer; 
+}
+
+@media (max-width: 470px) {
+  .p-inline{
+      padding-inline: 0.7rem;
+  }
+}

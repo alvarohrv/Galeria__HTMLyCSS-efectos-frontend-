@@ -15,9 +15,16 @@
 	<meta name="author" content="Alvaro Ruiz">
 	<meta name="keywords" content="">
 	<link rel="stylesheet" type="text/css" href="css/mynormalize_ar.css">
+	<link rel="stylesheet" type="text/css" href="css/layoutmain_section.css">
+
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/style_media_minw800.css">
-	 <link rel="stylesheet" type="text/css" href="css/fontAw/all.min.css">
+	<link rel="stylesheet" type="text/css" href="css/fontAw/all.min.css">
+
+	<link rel="stylesheet" type="text/css" href="css/root.css">
+
+	
+
  	<link rel="shortcut  icon" href="../img/favicon.png">
 
 	<!-- Font roboto -->
@@ -42,8 +49,28 @@
     <div class="contMainAndAside">
       <main class="contMain">
           <section>
-            <articule><header></header><main><p>Hola mundo.</p></main><footer></footer><articule>
+            <articule><header></header><main><p>Hola mundo.</p></main><footer></footer></articule>
           </section>
+		<!-- Altura fija, bilocular lineal centrada -->
+		 <!-- Usar alturas relativas en los contenidos internos -->
+		<section class="fix-section">
+            <div class="fix-section__column">
+				<header></header><main><p>Loculo01.</p></main><footer></footer>
+			</div>
+			<div class="fix-section__column" >
+				<header></header><main><p>Loculo02.</p></main><footer></footer>
+			</div>
+        </section>
+		<!-- Altura variable, bilocular lineal centrada -->
+		<!-- Usar alturas absulutas o ajustadas* en los contenidos internos -->
+		<section class="flex-section">
+            <div class="flex-section__column h-min__column">
+				<header></header><main><p>Loculo01</p></main><footer></footer>
+			</div>
+			<div class="flex-section__column h-min__column">
+				<header></header><main><p>Loculo02.</p></main><footer></footer>
+			</div>
+        </section>
       </main>
       <aside class="contAside"></aside>  
     </div>
@@ -51,9 +78,3 @@
 	<script src="js/script.js"></script>
 </body>
 </html>
-
-
-
-
-
-

@@ -1,0 +1,45 @@
+/* la seccion es flexible en altura, ajustada al contenido interno */
+.flex-section{
+    background-color: rgb(179, 179, 179);
+    display: flex;
+    flex-direction: row;
+    /* height: fit-content; */
+}
+/* contenido interno */
+.flex-section__column{
+    width: 50%;
+}
+.h-min__column{
+    min-height: 10vh;
+}
+@media (max-width: 600px){
+    .flex-section{
+        flex-direction: column;
+    }
+    .flex-section__column{
+        width: 100%;
+    }
+}
+
+/* la seccion es fija en altura, el contenido interno tiene altura ajustada */
+.fix-section{
+    background-color: rgb(189, 253, 203);
+    display: flex;
+    flex-direction: row;
+    height: 25vh;
+    width: 100%;
+}
+/* contenido interno */
+.fix-section__column{
+    width: 50%;
+}
+@media (max-width: 600px){
+    .fix-section{
+        flex-direction: column;
+        align-items: center;
+        height: fit-content
+    }
+    .fix-section__column{
+        width: 100%;
+    }
+}
