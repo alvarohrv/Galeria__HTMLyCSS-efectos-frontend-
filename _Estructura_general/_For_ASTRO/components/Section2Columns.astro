@@ -1,0 +1,46 @@
+---
+// seccion que recibe un slot
+---
+
+<section class="section wrapContainer">
+    <div class="flex-section__column h-min__column" id="column1">
+        <slot name="column1" />
+    </div>
+    <div class="flex-section__column h-min__column" id="column2">
+        <slot name="column2" />
+    </div>
+</section>
+<style>
+    /* la seccion es flexible en altura, ajustada al contenido interno */
+    .section {
+        /* background-color: rgb(179, 179, 179); */
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        background: rgb(168, 200, 250);
+        width: 100%;
+        /* margin: 0 auto; */
+        padding: 16px;
+        /* height: fit-content; */
+        /* height: 25vh; */
+    }
+    /* contenido interno */
+    .flex-section__column {
+        width: 50%;
+    }
+    .h-min__column {
+        min-height: 10vh;
+    }
+    @media (max-width: 600px) {
+        .section {
+            flex-direction: column;
+        }
+        .flex-section__column {
+            width: 100%;
+        }
+    }
+</style>
+<!-- ESTILOS PERSONALIZADOS PARA SECCIONES ESPECÍFICAS (ejemplo <SectionServices/> ) -->
+<style>
+
+</style>

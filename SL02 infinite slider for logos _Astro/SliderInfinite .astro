@@ -1,0 +1,197 @@
+---
+// src/components/SectionTestimonios.astro
+// Componente slider de movimiento perpetuo para logos o elementos visuales
+// Requiere un id único para evitar conflictos de estilos en caso de múltiples instancias
+
+interface Props {
+  speed?: number;        // velocidad en segundos (menor = más rápido)
+  direction?: 'left' | 'right';
+  gap?: number;          // espacio entre elementos en px
+  id: string;           // id opcional para estilos específicos
+}
+
+const { 
+  speed = 20,           // 20 segundos para dar la vuelta completa
+  direction = 'left',
+  gap = 20 
+} = Astro.props;
+
+// ejemplo con 15 colores
+const data = [
+  {color:'#FF6B6B'},
+  {color:'#4ECDC4'},
+  {color:'#45B7D1'},
+  {color:'#96CEB4'},
+  {color:'#FFEAA7'},  
+  {color:'#DDA0DD'},
+  {color:'#98D8C8'},
+  {color:'#F7B05E'},
+  {color:'#6C5B7B'},
+  {color:'#F08A5D'},
+  {color:'#B83B5E'},
+  {color:'#2D4059'},
+  {color:'#EA5455'},
+  {color:'#F07B3F'},
+  {color:'#FFC4A0'}
+];
+
+// si no trae id no renderizamos nada, para evitar conflictos de estilos
+const id = String(Astro.props.id).trim().replace(/\s+/g,'-'); // Aseguramos que sea string y eliminamos espacios
+if (!id){
+  console.warn('InfiniteCarousel requiere un id para evitar conflictos de estilos');
+  return null;
+} 
+---
+
+<!-- // solo se renderiza si se proporciona un id, para evitar conflictos de estilos en caso de múltiples instancias -->
+<div 
+  class="infinite-carousel" 
+  id={id}
+  style={`--speed: ${speed}s; --gap: ${gap}px`}
+>
+  <div 
+    class="carousel-track" 
+    data-direction={direction}
+  >
+    {/* Renderizamos los elementos originales */}
+    {data.map((item, index) => (
+      <div 
+        class="carousel-item" 
+        style={`background-color: ${item.color}`}
+        title={`Cuadro ${index + 1}`}
+      >
+        {index + 1}
+      </div>
+    ))}
+    
+    {/* DUPLICADO CLAVE: la copia exacta para el efecto infinito */}
+    {data.map((item, index) => (
+      <div 
+        class="carousel-item" 
+        style={`background-color: ${item.color}`}
+        title={`Cuadro ${index + 1}`}
+      >
+        {index + 1}
+      </div>
+    ))}
+  </div>
+</div>
+
+
+<style is:global>
+  /* Estilos globales para el carrusel */
+  #{id}.infinite-carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: #f0f0f0;
+    padding: 20px 0;
+    /* // mask-image permite un desvanecimiento suave en los bordes para que los elementos no aparezcan/caigan de golpe */
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 5%,
+      black 95%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 5%,
+      black 95%,
+      transparent
+    );
+  }
+
+  #{id} .carousel-track {
+    display: flex;
+    gap: var(--gap, 20px);
+    width: fit-content;
+    animation: scroll var(--speed, 20s) linear infinite;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);                          /* Se mueve exactamente la mitad */
+    }
+  }
+  /* Dirección del movimiento */
+  #{id} .carousel-track[data-direction="right"] {
+    animation-direction: reverse;
+  }
+  /* Pausar animación al hacer hover */
+  #{id} .infinite-carousel:hover .carousel-track {
+    animation-play-state: paused;
+  }
+
+  /* Estilos de cada cuadro */
+  #{id} .carousel-item {
+    width: 100px;
+    height: 100px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 24px;
+    color: white;
+    text-shadow: 0 0 5px rgba(0,0,0,0.3);
+    flex-shrink: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+
+    user-select: none;           /* ← Evita que el texto sea seleccionado */
+    -webkit-user-select: none;   /* ← Soporte para Safari */
+    -moz-user-select: none;      /* ← Soporte para Firefox */
+  }
+
+  #{id} .carousel-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  }
+</style>
+
+
+
+<script define:vars={{ id }}>
+  // console.log(`Carrusel ${id} renderizado`);
+  // Script opcional para mejorar el rendimiento
+  document.querySelector(`#${id} .infinite-carousel`).forEach(carousel => {
+    const track = carousel.querySelector('.carousel-track');
+    
+    // Verificar que haya suficientes elementos para el efecto
+    const checkInfinite = () => {
+      if (!track) return;
+      const items = track.querySelectorAll('.carousel-item');
+      const totalWidth = track.scrollWidth;
+      const containerWidth = carousel.offsetWidth;
+      
+      // Si el contenido es menor que el contenedor, ajustamos la animación
+      if (totalWidth < containerWidth * 2) {
+        // Necesitamos más duplicados
+        const originalItems = Array.from(items).slice(0, items.length / 2);
+        const duplicatesNeeded = Math.ceil((containerWidth * 2) / (totalWidth / 2));
+        
+        for (let i = 1; i < duplicatesNeeded; i++) {
+          originalItems.forEach(item => {
+            const clone = item.cloneNode(true);
+            track.appendChild(clone);
+          });
+        }
+      }
+    };
+    
+    // Pequeño delay para asegurar que todo está renderizado
+    setTimeout(checkInfinite, 100);
+  });
+</script>
+
+
+<!-- Duplicación de contenido	Para crear el efecto infinito sin JS complejo	Se duplican los elementos dentro del track
+Transform: translateX(-50%)	Moverse justo la mitad del ancho total	El punto exacto donde empieza la copia
+Mask-image / gradient	Desvanecimiento en los bordes	Que los elementos no aparezcan/caigan de golpe
+Animation: linear infinite	Movimiento continuo y suave	Loop perpetuo sin pausas
+animation-play-state: paused	Pausar al hacer hover	Mejor experiencia de usuario -->

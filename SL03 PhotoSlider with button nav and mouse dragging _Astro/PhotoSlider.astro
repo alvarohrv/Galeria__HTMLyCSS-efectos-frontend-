@@ -1,0 +1,263 @@
+---
+// src/components/PhotoSlider.astro
+// Componente slider de equipo con navegación por botones y arrastre táctil/ratón
+
+
+// Requiere un id único para evitar conflictos de estilos en caso de múltiples instancias
+const id = String(Astro.props.id).trim().replace(/\s+/g,'-'); // Aseguramos que sea string y eliminamos espacios
+if (!id){
+  console.warn('InfiniteCarousel requiere un id para evitar conflictos de estilos');
+  return null;
+} 
+---
+
+
+<!-- EQUIPO SLIDER -->
+<section class="section wrapContainer">
+    <h2 class="section-title flex-section__column">👩‍⚕️ Nuestro Equipo</h2>
+    <div class="team-slider-container">
+        <button class="slider-btn left"  id={`${id}-prevTeam`}>❮</button>
+        <div class="team-slider" id={`${id}-teamSlider`}>
+            <div class="team-slide"><img src="https://fastly.picsum.photos/id/932/600/400.jpg?hmac=-W7QaS8NLuXM7rJdiBDu8NQoyHlr41Lo6JYaFUF6RpU" alt="equipo 1" draggable="false"></div>
+            <div class="team-slide"><img src="https://fastly.picsum.photos/id/634/600/400.jpg?hmac=V-eDW-v311lXFmCU3Ihthfk62dLVZfIH5LfASWUsCVY" alt="equipo 2" draggable="false"></div>
+            <div class="team-slide"><img src="https://fastly.picsum.photos/id/217/600/400.jpg?hmac=vGR4PIdK7u8t4ifvnJF0Qktz0lmTd1X4pZITAzAXSqQ" alt="equipo 3" draggable="false"></div>
+            <div class="team-slide"><img src="https://fastly.picsum.photos/id/932/600/400.jpg?hmac=-W7QaS8NLuXM7rJdiBDu8NQoyHlr41Lo6JYaFUF6RpU" alt="equipo 4" draggable="false"></div>
+        </div>
+        <button class="slider-btn right" id={`${id}-nextTeam`}>❯</button>
+    </div>
+</section>
+
+<style>
+    /* ========== ESTILOS BASE ========== */
+    .section {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 16px;
+    }
+    .flex-section__column {
+        width: 100%;
+        min-height: 10vh;
+    }
+
+    /* ========== CARRUSEL ========== */
+    .team-slider-container {
+        position: relative;
+        max-width: 900px;
+        margin: 0 auto;
+        overflow: hidden;
+        border-radius: 36px;
+    }
+
+    .team-slider {
+        display: flex;
+        transition: transform 0.3s ease-out;
+        cursor: grab;
+        width: 100%;
+    }
+    .team-slider:active {
+        cursor: grabbing;
+    }
+
+    .team-slide {
+        flex: 0 0 100%;          /* cada slide ocupa exactamente el 100% del ancho del contenedor */
+            /* flex-grow: 0;  --Si hay espacio extra, NO crece para ocuparlo
+            flex-shrink: 0;  -- Si falta espacio, NO se encoge para reducirse
+            flex-basis: 100%; */
+            /* flex: 0 1 auto; Comportamiento por defecto */
+            /* flex: 1;	(abreviatura de 1 1 0) */
+            
+        padding: 16px;
+        box-sizing: border-box;  /* el padding no aumenta el ancho */
+    }
+
+
+    .team-slide img {
+        width: 100%;
+        height: 380px;
+        object-fit: cover;
+        border-radius: 36px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        pointer-events: none;     /* evita que la imagen capture el arrastre */
+        user-select: none;
+        -webkit-user-drag: none;
+    }
+
+    /* Botones de navegación */
+    .slider-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255,255,255,0.9);
+        border: none;
+        font-size: 2rem;
+        cursor: pointer;
+        padding: 10px 16px;
+        border-radius: 60px;
+        z-index: 10;
+        font-weight: bold;
+        color: #1e3c72;
+        transition: background 0.2s;
+    }
+    .slider-btn:hover {
+        background: white;
+    }
+    .slider-btn.left { left: 10px; }
+    .slider-btn.right { right: 10px; }
+
+    /* Responsive para móviles */
+    @media (max-width: 768px) {
+        .team-slide img {
+            height: 280px;
+        }
+        .slider-btn {
+            font-size: 1.5rem;
+            padding: 6px 12px;
+        }
+    }
+</style>
+
+<script define:vars={{ id }}>
+    console.log(`Slider de equipo ${id} renderizado`);
+    (function() {
+        // Elementos
+        const prevBtn = document.getElementById(`${id}-prevTeam`);
+        const slider = document.getElementById(`${id}-teamSlider`);
+        const nextBtn = document.getElementById(`${id}-nextTeam`);
+        if (!slider) return;
+
+        const slides = document.querySelectorAll(`#${id}-teamSlider .team-slide`);
+        const totalSlides = slides.length;
+        let currentIndex = 0;
+        let startX = 0;
+        let startTranslate = 0;
+        let isDragging = false;
+        let startTime = 0;
+
+        // Actualiza la posición del slider (en porcentaje)
+        function updateSlider(transition = true) {
+            slider.style.transition = transition ? 'transform 0.3s ease-out' : 'none';
+            slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        // Funciones de navegación (para botones)
+        function goPrev() {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            updateSlider(true);
+        }
+
+        function goNext() {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateSlider(true);
+        }
+
+        // Asignar eventos a botones
+        if (prevBtn) prevBtn.addEventListener('click', goPrev);
+        if (nextBtn) nextBtn.addEventListener('click', goNext);
+
+        // --- Lógica de arrastre (mouse y táctil) ---
+        function getClientX(e) {
+            if (e.type.startsWith('touch')) {
+                return e.touches[0].clientX;
+            }
+            return e.clientX;
+        }
+
+        function onDragStart(e) {
+            e.preventDefault();
+            if (e.type === 'mousedown') {
+                slider.style.cursor = 'grabbing';
+            }
+            isDragging = true;
+            startX = getClientX(e);
+            startTime = Date.now();
+            // Obtener el porcentaje actual de transformación
+            const transform = window.getComputedStyle(slider).transform;
+            if (transform !== 'none') {
+                const matrix = transform.match(/matrix.*\((.+)\)/);
+                if (matrix) {
+                    const values = matrix[1].split(', ');
+                    const translateX = parseFloat(values[4]); // píxeles
+                    const containerWidth = slider.parentElement.offsetWidth;
+                    startTranslate = (translateX / containerWidth) * 100;
+                } else {
+                    startTranslate = -currentIndex * 100;
+                }
+            } else {
+                startTranslate = -currentIndex * 100;
+            }
+            slider.style.transition = 'none';
+        }
+
+        function onDragMove(e) {
+            if (!isDragging) return;
+            e.preventDefault();
+            const currentX = getClientX(e);
+            const deltaX = currentX - startX;
+            const containerWidth = slider.parentElement.offsetWidth;
+            let deltaPercent = (deltaX / containerWidth) * 100;
+            let newTranslate = startTranslate + deltaPercent;
+            // Limitar para no mostrar bordes vacíos (opcional)
+            const minTranslate = -((totalSlides - 1) * 100);
+            const maxTranslate = 0;
+            newTranslate = Math.min(maxTranslate, Math.max(minTranslate, newTranslate));
+            slider.style.transform = `translateX(${newTranslate}%)`;
+        }
+
+        function onDragEnd(e) {
+            if (!isDragging) return;
+            isDragging = false;
+            slider.style.cursor = 'grab';
+            
+            let endX = getClientX(e);
+            let deltaX = endX - startX;
+            const containerWidth = slider.parentElement.offsetWidth;
+            let deltaPercent = (deltaX / containerWidth) * 100;
+            const velocity = Math.abs(deltaX) / (Date.now() - startTime);
+            
+            // Umbral: 20% del ancho o velocidad rápida (>0.3 px/ms)
+            const threshold = 20;
+            const velocityThreshold = 0.3;
+            
+            let newIndex = currentIndex;
+            if (Math.abs(deltaPercent) > threshold || velocity > velocityThreshold) {
+                if (deltaPercent > 0) {
+                    newIndex = currentIndex - 1; // arrastre derecha -> anterior
+                } else {
+                    newIndex = currentIndex + 1; // arrastre izquierda -> siguiente
+                }
+            }
+            
+            // Ajustar límites
+            newIndex = Math.max(0, Math.min(totalSlides - 1, newIndex));
+            
+            if (newIndex !== currentIndex) {
+                currentIndex = newIndex;
+                updateSlider(true);
+            } else {
+                // Volver a la posición actual
+                updateSlider(true);
+            }
+        }
+
+        // Eventos para ratón (escritorio)
+        slider.addEventListener('mousedown', onDragStart);
+        window.addEventListener('mousemove', onDragMove);
+        window.addEventListener('mouseup', onDragEnd);
+        
+        // Eventos táctiles (móvil)
+        slider.addEventListener('touchstart', onDragStart, { passive: false });
+        slider.addEventListener('touchmove', onDragMove, { passive: false });
+        slider.addEventListener('touchend', onDragEnd);
+        
+        // Prevenir el arrastre nativo de imágenes en toda la página (por si acaso)
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('dragstart', e => e.preventDefault());
+        });
+        
+        // Inicializar posición
+        updateSlider(false);
+    })();
+</script>
+

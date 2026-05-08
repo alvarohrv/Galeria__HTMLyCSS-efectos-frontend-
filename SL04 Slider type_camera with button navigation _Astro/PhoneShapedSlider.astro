@@ -1,0 +1,206 @@
+---
+// src/components/PhoneShapedSlider.astro
+// Carrusel de imagenes con botones de navegación y que gira el slider si hay imagenes verticales, para dar un efecto dinámico. 
+// Además, el botón de siguiente tiene una animación de titileo para llamar la atención cuando entra en vista (usando Intersection Observer).
+
+---
+<div class="carrusel_wrapper">
+    <!-- FOTOGRAFIA -->
+    <button class="btn prev" aria-label="Anterior">‹</button>
+    <figure class="fig_slider" id="id_slider_04">
+        <div class="el_tope">-</div>
+        
+        <img src="https://fastly.picsum.photos/id/932/600/400.jpg?hmac=-W7QaS8NLuXM7rJdiBDu8NQoyHlr41Lo6JYaFUF6RpU" alt="equipo 1" draggable="false" />
+        <img src="https://fastly.picsum.photos/id/634/600/400.jpg?hmac=V-eDW-v311lXFmCU3Ihthfk62dLVZfIH5LfASWUsCVY" alt="equipo 2" draggable="false">
+        <img src="https://fastly.picsum.photos/id/217/600/400.jpg?hmac=vGR4PIdK7u8t4ifvnJF0Qktz0lmTd1X4pZITAzAXSqQ" alt="equipo 3" draggable="false">
+        <img src="https://fastly.picsum.photos/id/932/600/400.jpg?hmac=-W7QaS8NLuXM7rJdiBDu8NQoyHlr41Lo6JYaFUF6RpU" alt="equipo 4" draggable="false">
+
+        <img src="https://fastly.picsum.photos/id/82/600/400.jpg?hmac=_OCiXS8m96OXdkfoXUEuz9FqTq7yDLeVOHTzxthhM3o" alt="equipo 1" draggable="false" />
+        <img src="https://fastly.picsum.photos/id/189/600/400.jpg?hmac=9vOKII0bn57_ozQrDVSj_FJ_UaTcVIefAUV4Y1CB9Nw" alt="equipo 2" draggable="false">
+
+
+        <img
+            src="https://fastly.picsum.photos/id/250/600/400.jpg?hmac=fK3xzeQSpwEr9WAtsU8lGHeKcGlLSLnQ0aJkREhPcIE"
+            alt="Kypuu Fotos"
+            class="img-link-js"
+            style="cursor: pointer;"
+            data-url="https://www.instagram.com/kypuufotos/"
+        />
+        <div class="el_tope">-</div>
+    </figure>
+    <button class="btn next" aria-label="Siguiente">›</button>
+</div>
+
+
+        
+<style>
+    .carrusel_wrapper figure img {
+        width: 240px;
+        height: auto;
+        scroll-snap-align: start;
+        border-radius: 10px;
+        object-fit: cover;
+        scroll-snap-align: center;
+        border-radius: 15px;
+    }
+    /*---------------iTERACION 4-----------------*/
+    .fig_slider {
+        display: flex;
+        flex-direction: row;
+        width: 315px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 10px;
+        scroll-behavior: smooth;
+        background: white;
+        border: 4px solid black;
+        border-radius: 15px;
+        /*esconder el scroll horizontal*/
+        /* Firefox */
+        scrollbar-width: none;
+        /* Internet Explorer 10+ */
+        -ms-overflow-style: none;
+        transition: rotate 0.5s ease-in-out;
+    }
+    .fig_slider.rotar {
+        rotate: -78deg;
+    }
+
+    .el_tope {
+        border-radius: 15px;
+        background: rgb(181, 8, 8);
+    }
+    /*-------------------------------------*/
+    .carrusel_wrapper {
+        margin: 100px 20px;
+        width: fit-content;
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+    .btn {
+        position: absolute;
+        z-index: 10;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        border: none;
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        font-size: 1.8rem;
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+        transition: transform 0.2s;
+    }
+    .btn.prev {
+        left: 10px;
+    }
+    .btn.next {
+        right: 10px;
+        transition: all 0.3s ease;
+    }
+
+    /* Clase que activará el JS */
+    .is-pulsing {
+        animation: titileo-fuerte 1s ease-in-out 5;
+        /* Esto asegura que al terminar se quede en el estado inicial sin salto*/
+        /* animation-fill-mode: forwards; */
+    }
+    .btn:hover {
+        background: rgba(0, 0, 0, 0.85);
+        transform: scale(1.1);
+    }
+
+    @keyframes titileo-fuerte {
+        0%,
+        100% {
+            background: rgba(0, 0, 0, 0.6);
+            transform: scale(1);
+        }
+        50% {
+            background: rgba(0, 0, 0, 1);
+            transform: scale(1.1);
+        }
+    }
+</style>
+
+<script>
+    //id_slider_04_slaider-rotation-mobilemockup.js
+
+/////// FOTO GRAFIA iTERACION 4 //////
+// alert('hola')
+let fotografias = 7
+let foto_horizontales = 4
+let contador = 1
+
+const slider = document.getElementById('id_slider_04')
+const btnPrev = document.querySelector('.btn.prev')
+const btnNext = document.querySelector('.btn.next')
+
+if (!slider || !btnPrev || !btnNext) {
+    console.error('No se encontraron los elementos del carrusel');
+}
+
+// ancho de una imagen + gap
+const scrollAmount = 260
+
+btnNext.addEventListener('click', () => {
+	// operador ternario
+	if (contador < fotografias){
+        if(!slider){
+            console.error('No se encontró el slider');
+            return;
+        }
+		slider.scrollBy({ left: scrollAmount, behavior: 'smooth' })
+		contador += 1
+		if (contador > foto_horizontales){
+			slider.classList.add('rotar')
+		}
+	}
+})
+
+btnPrev.addEventListener('click', () => {
+    if(!slider){
+        console.error('No se encontró el slider');
+        return;
+    }
+
+	if (contador > 1){
+		slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' })
+		contador -= 1
+		if( contador <= foto_horizontales){
+			slider.classList.remove('rotar')
+		}
+	}
+})
+
+////////////////////////////
+// const btnNext = document.querySelector('.btn.next')
+
+const observerOptions = {
+    root: null, // viewport
+    threshold: 0.1 // se activa cuando se ve el 10% del botón
+};
+
+const pulseObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if(!btnNext){
+            console.error('No se encontró el botón siguiente');
+            return;
+        }
+        if (entry.isIntersecting) {
+            // Cuando entra en vista, añadimos la clase de animación
+            btnNext.classList.add('is-pulsing');
+        } else {
+            // Opcional: quitamos la animación si sale de la vista
+            btnNext.classList.remove('is-pulsing');
+        }
+    });
+}, observerOptions);
+
+if (btnNext) {
+    pulseObserver.observe(btnNext);
+}
+
+</script>
